@@ -10,4 +10,5 @@ target 'InstagramClone' do
   pod 'AWSDynamoDB'
   pod 'AWSCognito'
   pod 'AWSS3'
+  pod 'Google/SignIn'
 end
