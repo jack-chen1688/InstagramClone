@@ -9,12 +9,13 @@
 import UIKit
 import Google
 import GoogleSignIn
+import AWSCognito
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, AWSIdentityProviderManager {
 
     var window: UIWindow?
-
+    var googleIdToken = ""
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -41,20 +42,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             // [END_EXCLUDE]
         } else {
             // Perform any operations on signed in user here.
-            let userId = user.userID                  // For client-side use only!
-            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
-            let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
-            let email = user.profile.email
-            // [START_EXCLUDE]
-            NotificationCenter.default.post(
-                name: Notification.Name(rawValue: "ToggleAuthUINotification"),
-                object: nil,
-                userInfo: ["statusText": "Signed in user:\n\(fullName)"])
-            // [END_EXCLUDE]
-            print(userId!, idToken!, fullName!, givenName!, familyName!, email!)
+            googleIdToken = user.authentication.idToken // Safe to send to the server
+//            let userId = user.userID                  // For client-side use only!
+//            let fullName = user.profile.name
+//            let givenName = user.profile.givenName
+//            let familyName = user.profile.familyName
+//            let email = user.profile.email
+//            // [START_EXCLUDE]
+//            NotificationCenter.default.post(
+//                name: Notification.Name(rawValue: "ToggleAuthUINotification"),
+//                object: nil,
+//                userInfo: ["statusText": "Signed in user:\n\(fullName)"])
+//            // [END_EXCLUDE]
+//            print(userId!, googleIdToken!, fullName!, givenName!, familyName!, email!)
+            signIntoCognito(user: user)
+            
         }
+    }
+    
+    func signIntoCognito(user: GIDGoogleUser) {
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .usWest2, identityPoolId: "us-west-2:2f59c7dc-6222-467d-bcdd-3ae9c211c27d", identityProviderManager: self)
+        let configuration = AWSServiceConfiguration(region: .usWest2, credentialsProvider: credentialsProvider)
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
+        
+        credentialsProvider.getIdentityId().continue({ (task:AWSTask) -> Any? in
+            if task.error != nil {
+                print("hello", task.error as Any)
+                return nil
+            }
+            
+            if let syncClient = AWSCognito.default() {
+                if let dataset = syncClient.openOrCreateDataset("InstagramDataset") {
+                    dataset.setString(user.profile.email, forKey: "email")
+                    dataset.setString(user.profile.name, forKey: "name")
+                    
+                    let result = dataset.synchronize()
+                    
+                    result?.continue({ (task: AWSTask) -> Any? in
+                        if task.error != nil {
+                            print("hello1", task.error as Any)
+                        } else {
+                            print("hello2", task.result as Any)
+                        }
+                        return nil
+                    })
+                }
+            }
+            return nil
+        })
+    }
+    
+    func logins() -> AWSTask<NSDictionary> {
+        let result = NSDictionary(dictionary: [AWSIdentityProviderGoogle : googleIdToken])
+        return AWSTask(result: result)
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {

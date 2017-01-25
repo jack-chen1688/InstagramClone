@@ -15,6 +15,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
         //GIDSignIn.sharedInstance().signOut()
         GIDSignIn.sharedInstance().disconnect()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
