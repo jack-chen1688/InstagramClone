@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  Follower.swift
 //  InstagramClone
 //
 //  Created by Xuehua Chen on 1/29/17.
@@ -9,10 +9,11 @@
 import Foundation
 import AWSDynamoDB
 
-class User : AWSDynamoDBObjectModel, AWSDynamoDBModeling {
+class Follower: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     
-    var id  : String = ""
-    var name   : String = ""
+    var id = ""
+    var follower = ""
+    var following = ""
     
 //    override init!() {
 //        super.init()
@@ -21,8 +22,6 @@ class User : AWSDynamoDBObjectModel, AWSDynamoDBModeling {
 //    override init(dictionary dictionaryValue: [AnyHashable : Any]!, error: ()) throws {
 //        super.init()
 //        id = dictionaryValue["id"] as! String
-//        name = dictionaryValue["name"] as! String
-//        
 //    }
 //    
 //    required init!(coder: NSCoder!) {
@@ -30,9 +29,9 @@ class User : AWSDynamoDBObjectModel, AWSDynamoDBModeling {
 //    }
     
     class func dynamoDBTableName() -> String {
-        return "Users"
+        return "Follower"
     }
-    
+
     class func hashKeyAttribute() -> String {
         return "id"
     }

@@ -82,7 +82,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, AWSIde
                         if task.error != nil {
                             print("hello1", task.error as Any)
                         } else {
-                            print("hello2", task.result as Any)
+//                            print("hello2", task.result as Any)
+                            DispatchQueue.main.async(execute: {
+                                self.window?.rootViewController?.performSegue(withIdentifier: "login", sender: nil)
+                            })
                         }
                         return nil
                     })
