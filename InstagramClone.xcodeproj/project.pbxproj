@@ -14,6 +14,7 @@
 		5A9E29901E371FFD00909164 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A9E298F1E371FFD00909164 /* Assets.xcassets */; };
 		5A9E29931E371FFD00909164 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A9E29911E371FFD00909164 /* LaunchScreen.storyboard */; };
 		5A9E299B1E3729E200909164 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9E299A1E3729E200909164 /* GoogleService-Info.plist */; };
+		5AEC4C5C1E3EC98E00DF394C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEC4C5B1E3EC98E00DF394C /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		5A9E29921E371FFD00909164 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A9E29941E371FFD00909164 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A9E299A1E3729E200909164 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5AEC4C5B1E3EC98E00DF394C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		97D7B8001659A15596CFB707 /* Pods-InstagramClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramClone/Pods-InstagramClone.debug.xcconfig"; sourceTree = "<group>"; };
 		B8A4B465FAC38D4CA6B21C3E /* Pods_InstagramClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -70,6 +72,7 @@
 				5A9E298F1E371FFD00909164 /* Assets.xcassets */,
 				5A9E29911E371FFD00909164 /* LaunchScreen.storyboard */,
 				5A9E29941E371FFD00909164 /* Info.plist */,
+				5AEC4C5B1E3EC98E00DF394C /* User.swift */,
 			);
 			path = InstagramClone;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			files = (
 				5A9E298B1E371FFD00909164 /* ViewController.swift in Sources */,
 				5A9E29891E371FFD00909164 /* AppDelegate.swift in Sources */,
+				5AEC4C5C1E3EC98E00DF394C /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
