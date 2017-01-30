@@ -48,7 +48,7 @@
         <!--Users-->
         <scene sceneID="wx1-wc-UqJ">
             <objects>
-                <tableViewController id="lXs-a7-oMv" sceneMemberID="viewController">
+                <tableViewController id="lXs-a7-oMv" customClass="UserViewController" customModule="InstagramClone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="SFD-Fj-oBp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -72,13 +72,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vfQ-wh-fGU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="98" y="198"/>
+            <point key="canvasLocation" x="201" y="197"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zQa-by-ImF">
             <objects>
                 <navigationController id="JZL-Ld-Mjx" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZFt-nu-NHP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZFt-nu-NHP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

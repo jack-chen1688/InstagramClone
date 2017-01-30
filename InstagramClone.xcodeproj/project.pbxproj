@@ -16,6 +16,7 @@
 		5A9E299B1E3729E200909164 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9E299A1E3729E200909164 /* GoogleService-Info.plist */; };
 		5AEC4C5C1E3EC98E00DF394C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEC4C5B1E3EC98E00DF394C /* User.swift */; };
 		5AEC4C5E1E3ED89800DF394C /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEC4C5D1E3ED89700DF394C /* Follower.swift */; };
+		5AEC4C621E3F034000DF394C /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEC4C611E3F034000DF394C /* UserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		5A9E299A1E3729E200909164 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5AEC4C5B1E3EC98E00DF394C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5AEC4C5D1E3ED89700DF394C /* Follower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
+		5AEC4C611E3F034000DF394C /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		97D7B8001659A15596CFB707 /* Pods-InstagramClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramClone/Pods-InstagramClone.debug.xcconfig"; sourceTree = "<group>"; };
 		B8A4B465FAC38D4CA6B21C3E /* Pods_InstagramClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 				5A9E29941E371FFD00909164 /* Info.plist */,
 				5AEC4C5B1E3EC98E00DF394C /* User.swift */,
 				5AEC4C5D1E3ED89700DF394C /* Follower.swift */,
+				5AEC4C611E3F034000DF394C /* UserViewController.swift */,
 			);
 			path = InstagramClone;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A9E298B1E371FFD00909164 /* ViewController.swift in Sources */,
+				5AEC4C621E3F034000DF394C /* UserViewController.swift in Sources */,
 				5A9E29891E371FFD00909164 /* AppDelegate.swift in Sources */,
 				5AEC4C5C1E3EC98E00DF394C /* User.swift in Sources */,
 				5AEC4C5E1E3ED89800DF394C /* Follower.swift in Sources */,
