@@ -11,11 +11,11 @@ import AWSDynamoDB
 
 class UserViewController: UITableViewController {
 
+    var refresher: UIRefreshControl!
     var users = [User]()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
+    func refresh() {
+        
         let mapper = AWSDynamoDBObjectMapper.default()
         let scanExpression = AWSDynamoDBScanExpression()
         
@@ -24,18 +24,32 @@ class UserViewController: UITableViewController {
                 print(err as Any)
             } else {
                 if (dynamoResults != nil) {
+                    self.users.removeAll()
                     for user in dynamoResults?.items as! [User] {
                         self.users.append(user)
+                        //print(user.id, user.name)
                     }
                 }
             }
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.refresher.endRefreshing()
             }
             
         }
-        
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        refresh()
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: #selector(UserViewController.refresh), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refresher)
+        //refresher.addSubview(self.tableView)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -63,7 +77,7 @@ class UserViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        cell.textLabel?.text = "hello"
+        cell.textLabel?.text = users[indexPath.row].name
         // Configure the cell...
 
         return cell
