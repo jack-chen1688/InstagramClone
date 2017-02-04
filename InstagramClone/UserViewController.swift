@@ -7,12 +7,35 @@
 //
 
 import UIKit
+import AWSDynamoDB
 
 class UserViewController: UITableViewController {
 
+    var users = [User]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let mapper = AWSDynamoDBObjectMapper.default()
+        let scanExpression = AWSDynamoDBScanExpression()
+        
+        mapper.scan(User.self, expression: scanExpression) { (dynamoResults, err) in
+            if (err != nil) {
+                print(err as Any)
+            } else {
+                if (dynamoResults != nil) {
+                    for user in dynamoResults?.items as! [User] {
+                        self.users.append(user)
+                    }
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -34,7 +57,7 @@ class UserViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return users.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
