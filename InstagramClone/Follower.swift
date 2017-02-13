@@ -13,7 +13,7 @@ class Follower: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     
     var id = ""
     var follower = ""
-    var following = ""
+    var followee = ""
     
 //    override init!() {
 //        super.init()
@@ -29,7 +29,7 @@ class Follower: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
 //    }
     
     class func dynamoDBTableName() -> String {
-        return "Follower"
+        return "Followers"
     }
 
     class func hashKeyAttribute() -> String {

@@ -13,10 +13,13 @@ class UserViewController: UITableViewController {
 
     var refresher: UIRefreshControl!
     var users = [User]()
-
+    var credentialsProvider:AWSCognitoCredentialsProvider = AWSServiceManager.default().defaultServiceConfiguration.credentialsProvider as! AWSCognitoCredentialsProvider
+    var mapper = AWSDynamoDBObjectMapper.default()
+    
     func refresh() {
         
-        let mapper = AWSDynamoDBObjectMapper.default()
+        let id = credentialsProvider.identityId! as String
+        
         let scanExpression = AWSDynamoDBScanExpression()
         
         mapper.scan(User.self, expression: scanExpression) { (dynamoResults, err) in
@@ -26,8 +29,10 @@ class UserViewController: UITableViewController {
                 if (dynamoResults != nil) {
                     self.users.removeAll()
                     for user in dynamoResults?.items as! [User] {
-                        self.users.append(user)
-                        //print(user.id, user.name)
+                        if user.id != id {
+                            self.users.append(user)
+                            self.addFollower(followee: user.id, map: self.mapper)
+                        }
                     }
                 }
             }
@@ -38,8 +43,16 @@ class UserViewController: UITableViewController {
             }
             
         }
+
     }
     
+    func addFollower(followee: String, map: AWSDynamoDBObjectMapper) {
+        let follower = Follower()
+        follower?.id = NSUUID().uuidString
+        follower?.follower = credentialsProvider.identityId! as String
+        follower?.followee = followee
+        map.save(follower!)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
