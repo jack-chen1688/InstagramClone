@@ -13,8 +13,10 @@ class UserViewController: UITableViewController {
 
     var refresher: UIRefreshControl!
     var users = [User]()
+    var isFollowing = ["": false]
     var credentialsProvider:AWSCognitoCredentialsProvider = AWSServiceManager.default().defaultServiceConfiguration.credentialsProvider as! AWSCognitoCredentialsProvider
     var mapper = AWSDynamoDBObjectMapper.default()
+    
     
     func refresh() {
         
@@ -38,6 +40,7 @@ class UserViewController: UITableViewController {
             }
             
             DispatchQueue.main.async {
+                print("reload")
                 self.tableView.reloadData()
                 self.refresher.endRefreshing()
             }
@@ -91,11 +94,18 @@ class UserViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         cell.textLabel?.text = users[indexPath.row].name
+        
+        //cell.accessoryType = UITableViewCellAccessoryType.checkmark
         // Configure the cell...
 
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)!
+        print("selected")
+        cell.accessoryType = UITableViewCellAccessoryType.none
+    }
 
     /*
     // Override to support conditional editing of the table view.
