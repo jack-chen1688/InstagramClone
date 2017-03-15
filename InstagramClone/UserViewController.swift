@@ -11,15 +11,17 @@ import AWSDynamoDB
 
 class UserViewController: UITableViewController {
 
+    let dataService = DataService()
+
     var refresher: UIRefreshControl!
     var users = [User]()
     var isFollowing = ["": false]
     var credentialsProvider:AWSCognitoCredentialsProvider = AWSServiceManager.default().defaultServiceConfiguration.credentialsProvider as! AWSCognitoCredentialsProvider
-    var mapper = AWSDynamoDBObjectMapper.default()
     
     
     func refresh() {
         
+        let mapper = AWSDynamoDBObjectMapper.default()
         let id = credentialsProvider.identityId! as String
         
         let scanExpression = AWSDynamoDBScanExpression()
@@ -33,17 +35,38 @@ class UserViewController: UITableViewController {
                     for user in dynamoResults?.items as! [User] {
                         if user.id != id {
                             self.users.append(user)
-                            self.addFollower(followee: user.id, map: self.mapper)
+                            //self.addFollower(followee: user.id, map: mapper)
                         }
                     }
                 }
             }
             
-            DispatchQueue.main.async {
-                print("reload")
-                self.tableView.reloadData()
-                self.refresher.endRefreshing()
-            }
+            self.dataService.findFollowings(follower: id, map: mapper).continue({ (task: AWSTask) -> Any? in
+                
+                if (task.error != nil) {
+                    print(task.error as Any)
+                }
+                
+                if (task.exception != nil) {
+                    print(task.exception as Any)
+                }
+                
+                if (task.result != nil) {
+                    for item in task.result as! [Follower] {
+                        self.isFollowing[item.followee] = true
+                    }
+                    
+                }
+                
+                DispatchQueue.main.async {
+                    print("reload")
+                    self.tableView.reloadData()
+                    self.refresher.endRefreshing()
+                }
+                
+                return nil
+            })
+            
             
         }
 
@@ -94,6 +117,12 @@ class UserViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         cell.textLabel?.text = users[indexPath.row].name
+        
+        let followeeId = users[indexPath.row].id
+        
+        if isFollowing[followeeId] == true {
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+        }
         
         //cell.accessoryType = UITableViewCellAccessoryType.checkmark
         // Configure the cell...
