@@ -72,13 +72,38 @@ class UserViewController: UITableViewController {
 
     }
     
-    func addFollower(followee: String, map: AWSDynamoDBObjectMapper) {
+    func addFollower(followee: String) {
+        let mapper = AWSDynamoDBObjectMapper.default()
         let follower = Follower()
         follower?.id = NSUUID().uuidString
         follower?.follower = credentialsProvider.identityId! as String
         follower?.followee = followee
-        map.save(follower!)
+        mapper.save(follower!)
     }
+    
+    func removeFollowee(followee: String) {
+        let mapper = AWSDynamoDBObjectMapper.default()
+        let id = credentialsProvider.identityId! as String
+        
+        dataService.findFollowee(follower: id, followee: followee, map: mapper).continue({ (task: AWSTask) -> Any? in
+            if (task.error != nil) {
+                print(task.error as Any)
+            }
+            
+            if (task.exception != nil) {
+                print(task.exception as Any)
+            }
+            
+            if (task.result != nil) {
+                for item in task.result as! [Follower] {
+                    mapper.remove(item)
+                }
+            }
+            return nil
+        })
+
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,16 +149,22 @@ class UserViewController: UITableViewController {
             cell.accessoryType = UITableViewCellAccessoryType.checkmark
         }
         
-        //cell.accessoryType = UITableViewCellAccessoryType.checkmark
-        // Configure the cell...
-
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)!
         print("selected")
-        cell.accessoryType = UITableViewCellAccessoryType.none
+        let followeeId = users[indexPath.row].id
+        if isFollowing[followeeId] == false {
+            addFollower(followee: followeeId)
+            isFollowing[followeeId] = true
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+        } else {
+            removeFollowee(followee: followeeId)
+            isFollowing[followeeId] = false
+            cell.accessoryType = UITableViewCellAccessoryType.none
+        }
     }
 
     /*
