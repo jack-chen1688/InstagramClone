@@ -10,6 +10,8 @@
 		390EDD272EB6AC160A2C84FB /* Pods_InstagramClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8A4B465FAC38D4CA6B21C3E /* Pods_InstagramClone.framework */; };
 		5A864B5F1E77A8BA0013F098 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A864B5E1E77A8BA0013F098 /* DataService.swift */; };
 		5A864B611E7CF9D80013F098 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A864B601E7CF9D80013F098 /* Post.swift */; };
+		5A864B631E7CFC740013F098 /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A864B621E7CFC740013F098 /* Placeholder.png */; };
+		5A864B651E7D01400013F098 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A864B641E7D01400013F098 /* PostViewController.swift */; };
 		5A9E29891E371FFD00909164 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E29881E371FFD00909164 /* AppDelegate.swift */; };
 		5A9E298B1E371FFD00909164 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E298A1E371FFD00909164 /* ViewController.swift */; };
 		5A9E298E1E371FFD00909164 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A9E298C1E371FFD00909164 /* Main.storyboard */; };
@@ -25,6 +27,8 @@
 		03164565B58EA79854EDAD8F /* Pods-InstagramClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramClone/Pods-InstagramClone.release.xcconfig"; sourceTree = "<group>"; };
 		5A864B5E1E77A8BA0013F098 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		5A864B601E7CF9D80013F098 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		5A864B621E7CFC740013F098 /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
+		5A864B641E7D01400013F098 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		5A9E29851E371FFD00909164 /* InstagramClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A9E29881E371FFD00909164 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A9E298A1E371FFD00909164 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 		5A9E29871E371FFD00909164 /* InstagramClone */ = {
 			isa = PBXGroup;
 			children = (
+				5A864B621E7CFC740013F098 /* Placeholder.png */,
 				5A9E299A1E3729E200909164 /* GoogleService-Info.plist */,
 				5A9E29881E371FFD00909164 /* AppDelegate.swift */,
 				5A9E298A1E371FFD00909164 /* ViewController.swift */,
@@ -85,6 +90,7 @@
 				5AEC4C611E3F034000DF394C /* UserViewController.swift */,
 				5A864B5E1E77A8BA0013F098 /* DataService.swift */,
 				5A864B601E7CF9D80013F098 /* Post.swift */,
+				5A864B641E7D01400013F098 /* PostViewController.swift */,
 			);
 			path = InstagramClone;
 			sourceTree = "<group>";
@@ -169,6 +175,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A864B631E7CFC740013F098 /* Placeholder.png in Resources */,
 				5A9E29931E371FFD00909164 /* LaunchScreen.storyboard in Resources */,
 				5A9E299B1E3729E200909164 /* GoogleService-Info.plist in Resources */,
 				5A9E29901E371FFD00909164 /* Assets.xcassets in Resources */,
@@ -231,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A864B651E7D01400013F098 /* PostViewController.swift in Sources */,
 				5A9E298B1E371FFD00909164 /* ViewController.swift in Sources */,
 				5AEC4C621E3F034000DF394C /* UserViewController.swift in Sources */,
 				5A9E29891E371FFD00909164 /* AppDelegate.swift in Sources */,
