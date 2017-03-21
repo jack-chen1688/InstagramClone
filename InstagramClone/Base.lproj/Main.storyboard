@@ -21,21 +21,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eaW-Bx-isA" customClass="GIDSignInButton">
-                                <rect key="frame" x="107" y="20" width="160" height="68"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdx-ze-D5f">
-                                <rect key="frame" x="121" y="165" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdx-ze-D5f">
+                                <rect key="frame" x="121" y="163" width="133" height="30"/>
                                 <state key="normal" title="Sign Out"/>
                                 <connections>
                                     <action selector="signOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y5w-up-J0s"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eaW-Bx-isA" customClass="GIDSignInButton">
+                                <rect key="frame" x="107" y="20" width="160" height="68"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hdx-ze-D5f" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8A3-3T-Nlw"/>
+                            <constraint firstItem="eaW-Bx-isA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TbU-wr-iCZ"/>
+                            <constraint firstItem="eaW-Bx-isA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="wP3-h5-sbN"/>
+                            <constraint firstItem="hdx-ze-D5f" firstAttribute="top" secondItem="eaW-Bx-isA" secondAttribute="bottom" constant="75" id="zdH-6k-FFB"/>
+                        </constraints>
                     </view>
                     <connections>
                         <segue destination="JZL-Ld-Mjx" kind="show" identifier="login" id="SyL-Um-jYZ"/>
@@ -92,14 +96,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="FFM-wu-TZB">
+                                <rect key="frame" x="30" y="64" width="315" height="315"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGc-wB-1ZX">
-                                <rect key="frame" x="118" y="368" width="138" height="30"/>
+                                <rect key="frame" x="118" y="386" width="138" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Select an Image..."/>
+                                <connections>
+                                    <action selector="chooseImage:" destination="ABN-H3-Kvr" eventType="touchUpInside" id="N5o-WQ-hZk"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nsx-nX-E3r">
-                                <rect key="frame" x="29" y="422" width="317" height="30"/>
+                                <rect key="frame" x="29" y="434" width="317" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -111,14 +122,13 @@
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Upload"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="FFM-wu-TZB">
-                                <rect key="frame" x="16" y="64" width="343" height="302"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="FFM-wu-TZB" id="ToY-x1-S7o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kzx-dG-IvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -138,7 +148,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Sf-Jn-9cV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-474" y="198"/>
+            <point key="canvasLocation" x="-410" y="197"/>
         </scene>
     </scenes>
     <resources>
